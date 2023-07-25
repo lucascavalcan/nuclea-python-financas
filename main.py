@@ -1,5 +1,6 @@
 from utils.funcoes_auxiliares import formata_texto, retorna_menu_principal
 from utils.valida_cpf import valida_cpf
+from utils.valida_rg import valida_rg
 
 validador = True
 clientes = []
@@ -20,14 +21,14 @@ while(validador):
         cliente = {
             "nome": formata_texto(input("Nome: ")),
             "cpf": valida_cpf(),
-            "rg": input("RG: "),
+            "rg": valida_rg(),
             "data_nascimento": input("Data de nascimento: "),
             "cep": input("CEP: "),
             "numero_casa": input("Número casa: ")
         }
         clientes.append(cliente)
         print(clientes)
-        retorna_menu_principal()
+        validador = retorna_menu_principal()
 
     elif opcao == "2":
         pass

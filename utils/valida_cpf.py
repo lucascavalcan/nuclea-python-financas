@@ -6,6 +6,8 @@ def valida_cpf():
 
     while True:
         cpf = input("CPF: ")
+        cpf = ''.join(filter(str.isdigit, cpf))
+
         resultado_validacao = cpf_validador.validate(cpf)
 
         if (resultado_validacao):
