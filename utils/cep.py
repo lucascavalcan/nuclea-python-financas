@@ -2,9 +2,23 @@ import requests
 
 def busca_cep(cep):
     url = f"http://viacep.com.br/ws/{cep}/json/"
-    response = requests.get(url)
+    response = requests.get(url).json()
+    return response
 
-    print(response.json())
+def valida_cep():
+    while True:
+        cep = input("Digite o CEP para busca: ")
+        response = busca_cep(cep)
 
-if __name__ == "__main__":
-    busca_cep("58046780")
+        if response:
+            endereco = {
+                "cep": response["cep"],
+                "logradouro": response["logradouro"],
+                "complemento": response.get("complemento", ""),
+                "bairro": response["bairro"],
+                "cidade": response["localidade"],
+                "uf": response["uf"]
+            }
+            return endereco
+        else:
+            print("CEP não encontrado. Tente novamente.")
