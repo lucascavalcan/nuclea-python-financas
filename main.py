@@ -1,3 +1,4 @@
+from utils.data import valida_data_nascimento
 from utils.funcoes_auxiliares import formata_texto, retorna_menu_principal
 from utils.valida_cpf import valida_cpf
 from utils.valida_rg import valida_rg
@@ -22,8 +23,8 @@ while(validador):
             "nome": formata_texto(input("Nome: ")),
             "cpf": valida_cpf(),
             "rg": valida_rg(),
-            "data_nascimento": input("Data de nascimento: "),
-            "cep": input("CEP: "),
+            "data_nascimento": valida_data_nascimento(),
+            "endereço": input("CEP: "),
             "numero_casa": input("Número casa: ")
         }
         clientes.append(cliente)
