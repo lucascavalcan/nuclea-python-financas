@@ -8,17 +8,22 @@ def busca_cep(cep):
 def valida_cep():
     while True:
         cep = input("Digite o CEP para busca: ")
-        response = busca_cep(cep)
+        cep = ''.join(filter(str.isdigit, cep))
 
-        if response:
-            endereco = {
-                "cep": response["cep"],
-                "logradouro": response["logradouro"],
-                "complemento": response.get("complemento", ""),
-                "bairro": response["bairro"],
-                "cidade": response["localidade"],
-                "uf": response["uf"]
-            }
-            return endereco
+        if len(cep) == 8 and cep.isdigit():
+            response = busca_cep(cep)
+
+            if "erro" not in response:
+                endereco = {
+                    "cep": response.get("cep", ""),
+                    "logradouro": response.get("logradouro", ""),
+                    "complemento": response.get("complemento", ""),
+                    "bairro": response.get("bairro", ""),
+                    "cidade": response.get("localidade", ""),
+                    "uf": response.get("uf", "")
+                }
+                return endereco
+            else:
+                print("CEP não encontrado. Tente novamente.")
         else:
-            print("CEP não encontrado. Tente novamente.")
+            print("CEP inválido. Digite um valor válido com 8 dígitos.")
