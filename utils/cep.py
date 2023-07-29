@@ -15,7 +15,7 @@ def valida_cep():
 
             if "erro" not in response:
                 endereco = {
-                    "cep": response.get("cep", ""),
+                    "CEP": response.get("cep", ""),
                     "logradouro": response.get("logradouro", ""),
                     "complemento": response.get("complemento", ""),
                     "bairro": response.get("bairro", ""),

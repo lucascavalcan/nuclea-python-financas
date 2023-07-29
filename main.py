@@ -25,7 +25,7 @@ def main():
                 "cpf": valida_cpf(),
                 "rg": valida_rg(),
                 "data_nascimento": valida_data_nascimento(),
-                "endereço": valida_cep(),
+                "endereco": valida_cep(),
                 "numero_casa": input("Número casa: ")
             }
             clientes.append(cliente)
