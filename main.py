@@ -21,7 +21,7 @@ def main():
         if opcao == "1":
             print("Informe os dados do cliente: ")
             cliente = {
-                "nome": formata_texto(input("Nome: ")),
+                "nome": formata_texto(),
                 "cpf": valida_cpf(),
                 "rg": valida_rg(),
                 "data_nascimento": valida_data_nascimento(),

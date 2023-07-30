@@ -15,12 +15,12 @@ def valida_cep():
 
             if "erro" not in response:
                 endereco = {
-                    "CEP": response.get("cep", ""),
-                    "logradouro": response.get("logradouro", ""),
-                    "complemento": response.get("complemento", ""),
-                    "bairro": response.get("bairro", ""),
-                    "cidade": response.get("localidade", ""),
-                    "uf": response.get("uf", "")
+                    "CEP": response.get("cep"),
+                    "Logradouro": response.get("logradouro"),
+                    "Complemento": response.get("complemento"),
+                    "Bairro": response.get("bairro"),
+                    "Cidade": response.get("localidade"),
+                    "Estado": response.get("uf")
                 }
                 return endereco
             else:

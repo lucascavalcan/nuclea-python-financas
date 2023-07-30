@@ -15,8 +15,3 @@ def valida_cpf():
             return cpf_formatado
         else:
             print("CPF inválido, digite novamente: ")
-
-def gera_cpf():
-    cpf = CPF()
-    cpf_gerado = cpf.generate()
-    return cpf_gerado

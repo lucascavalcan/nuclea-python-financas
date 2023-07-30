@@ -1,12 +1,16 @@
 def retorna_menu_principal():
-    retorna_menu_principal = input("Deseja retornar ao menu principal? (sim/não): ")
-    if retorna_menu_principal == "sim":
-        retorna_menu = True
-    elif retorna_menu_principal == "nao":
-        retorna_menu = False
-    return retorna_menu
+    while True:
+        retorna_menu_principal = input("Deseja retornar ao menu principal? (sim/não): ")
+        if retorna_menu_principal == "sim":
+            return True
+        elif retorna_menu_principal == "nao":
+            return False
+        else:
+            print("Valor inválido. Digite apenas 'sim' ou 'não'.")
 
 
-def formata_texto(texto):
-    nome_formatado = texto.title()
-    return nome_formatado
+def formata_texto():
+    while True:
+        nome = input("Nome: ")
+        nome_formatado = nome.title()
+        return nome_formatado
