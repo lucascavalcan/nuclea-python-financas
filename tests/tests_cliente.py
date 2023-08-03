@@ -4,14 +4,13 @@ from unittest.mock import patch
 from faker import Faker
 from validate_docbr import CPF
 
-from main import clientes, cadastrar_cliente
+from main import clientes, cadastrar_cliente, main
 
 
-def gera_cpf_fake():
+def gera_cpf_fake(self):  # ou (self)
     cpf = CPF()
     cpf_gerado = cpf.generate()
     return cpf_gerado
-
 
 class TestCliente(unittest.TestCase):
 
@@ -22,7 +21,7 @@ class TestCliente(unittest.TestCase):
     def test_cliente(self):
         nome = self.gerar_nome_fake()
         cpf = gera_cpf_fake()
-        inputs = ["1", nome, cpf, "12.345.678-x", "06/03/1998", "58046780", "701"]
+        inputs = ["1", "1", nome, cpf, "12.345.678-x", "06/03/1998", "58046780", "701"]
 
         with patch("builtins.input", side_effect=inputs):
             cadastrar_cliente()
@@ -38,7 +37,3 @@ class TestCliente(unittest.TestCase):
         }
 
         self.assertIn(cliente_esperado, clientes)
-
-
-if __name__ == '__main__':
-    unittest.main()
