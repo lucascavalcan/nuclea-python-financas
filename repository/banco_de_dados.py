@@ -77,6 +77,60 @@ class BancoDeDados:
         self.connection.commit()
         print("Cliente atualizado com sucesso.")
 
+    def insert_ordem(self, ordem):
+        print("Inserindo ordem no banco de dados: ")
+        insert_query = """
+            INSERT INTO ordem (nome, ticket, valor_compra, quantidade_compra, data_compra, cliente_id)
+            VALUES (%s, %s, %s, %s, %s, %s);
+        """
+        values = (
+            ordem['nome'],
+            ordem['ticket'],
+            ordem['valor_compra'],
+            ordem['quantidade_compra'],
+            ordem['data_compra'],
+            ordem['cliente_id']
+        )
+        self.cursor.execute(insert_query, values)
+        self.connection.commit()
+
+    def select_ordem(self, ticket):
+        print("Selecionando ordem no banco de dados: ")
+        select_query = "SELECT * FROM ordem WHERE ticket = %s;"
+        self.cursor.execute(select_query, (ticket,))
+        ordens = self.cursor.fetchall()
+        for ordem in ordens:
+            print(ordem)
+        return ordens
+
+    def delete_ordem(self, ticket):
+        print("Deletando ordem do banco de dados: ")
+        delete_query = "DELETE FROM ordem WHERE ticket = %s;"
+        self.cursor.execute(delete_query, (ticket,))
+        self.connection.commit()
+        print("Ordem deletada com sucesso.")
+
+    def update_ordem(self, ordem):
+        print("Atualizando ordem no banco de dados: ")
+        update_query = """
+            UPDATE ordem
+            SET nome = %s, ticket = %s, valor_compra = %s, quantidade_compra = %s,
+                data_compra = %s, cliente_id = %s
+            WHERE ticket = %s;
+        """
+        values = (
+            ordem['nome'],
+            ordem['ticket'],
+            ordem['valor_compra'],
+            ordem['quantidade_compra'],
+            ordem['data_compra'],
+            ordem['cliente_id'],
+            ordem['ticket']  # Condição para atualização
+        )
+        self.cursor.execute(update_query, values)
+        self.connection.commit()
+        print("Ordem atualizada com sucesso.")
+
     @staticmethod
     def retorna_parametros_conexao_banco_de_dados():
         parametros_conexao = {
