@@ -54,14 +54,24 @@ class BancoDeDados:
         print("Atualizando cliente no banco de dados: ")
         update_query = """
             UPDATE cliente
-            SET nome = %s, rg = %s, data_nascimento = %s
+            SET nome = %s, cpf = %s, rg = %s, data_nascimento = %s,
+                cep = %s, logradouro = %s, complemento = %s,
+                bairro = %s, cidade = %s, estado = %s, numero_residencia = %s
             WHERE cpf = %s;
             """
         values = (
             cliente['nome'],
+            cliente['cpf'],
             cliente['rg'],
             cliente['data_nascimento'],
-            cliente['cpf']
+            cliente['cep']['CEP'],
+            cliente['cep']['logradouro'],
+            cliente['cep']['complemento'],
+            cliente['cep']['bairro'],
+            cliente['cep']['cidade'],
+            cliente['cep']['estado'],
+            cliente['numero_residencia'],
+            cliente['cpf']  # Condição para atualização
         )
         self.cursor.execute(update_query, values)
         self.connection.commit()
@@ -83,4 +93,3 @@ class BancoDeDados:
 # Realizar integração com a classe cliente.
 conexao = BancoDeDados()
 cliente = {"cpf": "914.566.460-95"}
-
