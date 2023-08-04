@@ -23,24 +23,24 @@ class BancoDeDados:
             cliente['cpf'],
             cliente['rg'],
             cliente['data_nascimento'],
-            cliente['cep']['CEP'],
-            cliente['cep']['logradouro'],
-            cliente['cep']['complemento'],
-            cliente['cep']['bairro'],
-            cliente['cep']['cidade'],
-            cliente['cep']['estado'],
+            cliente['endereço']['CEP'],
+            cliente['endereço']['Logradouro'],
+            cliente['endereço']['Complemento'],
+            cliente['endereço']['Bairro'],
+            cliente['endereço']['Cidade'],
+            cliente['endereço']['Estado'],
             cliente['numero_residencia']
         )
         self.cursor.execute(insert_query, values)
         self.connection.commit()
 
     def select(self, cliente):
-        print("Selecionando cliente no banco de dados: ")
+        print("Selecionando cliente no banco de dados...")
         select_query = "SELECT * FROM cliente WHERE cpf = %s;"
         self.cursor.execute(select_query, (cliente['cpf'],))
         clientes = self.cursor.fetchall()
-        for cliente in clientes:
-            print(cliente)
+        #for cliente in clientes:
+        #    print(cliente)
         return clientes
 
     def delete(self, cliente):
@@ -64,12 +64,12 @@ class BancoDeDados:
             cliente['cpf'],
             cliente['rg'],
             cliente['data_nascimento'],
-            cliente['cep']['CEP'],
-            cliente['cep']['logradouro'],
-            cliente['cep']['complemento'],
-            cliente['cep']['bairro'],
-            cliente['cep']['cidade'],
-            cliente['cep']['estado'],
+            cliente['endereço']['CEP'],
+            cliente['endereço']['Logradouro'],
+            cliente['endereço']['Complemento'],
+            cliente['endereço']['Bairro'],
+            cliente['endereço']['Cidade'],
+            cliente['endereço']['Estado'],
             cliente['numero_residencia'],
             cliente['cpf']  # Condição para atualização
         )

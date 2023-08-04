@@ -14,3 +14,9 @@ def formata_texto():
         nome = input("Nome: ")
         nome_formatado = nome.title()
         return nome_formatado
+
+def numero_casa():
+    while True:
+        casa = int(input("Número da Casa: "))
+        return casa
+
