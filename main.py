@@ -1,3 +1,4 @@
+from carteira import realizar_analise_carteira
 from models.cliente import Cliente
 from models.ordem import Ordem
 from relatorio import obter_dados_acao, imprimir_relatorio_acao
@@ -95,7 +96,8 @@ def main():
                     print("Opção inválida. Tente novamente.")
 
         elif opcao == "3":
-            pass
+            cpf = valida_cpf_ordem().strip()
+            realizar_analise_carteira(cpf)
         elif opcao == "4":
             cpf = valida_cpf_ordem().strip()
             arquivo = nome_arquivo().strip()
