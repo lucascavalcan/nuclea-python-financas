@@ -35,7 +35,6 @@ class BancoDeDados:
         self.connection.commit()
 
     def select(self, cliente):
-        print("Selecionando cliente no banco de dados...")
         select_query = "SELECT * FROM cliente WHERE cpf = %s;"
         self.cursor.execute(select_query, (cliente['cpf'],))
         clientes = self.cursor.fetchall()
@@ -44,14 +43,14 @@ class BancoDeDados:
         return clientes
 
     def delete(self, cliente):
-        print("Deletando cliente do banco de dados: ")
+        print("Deletando cliente do banco de dados... ")
         delete_query = "DELETE FROM cliente WHERE cpf = %s;"
         self.cursor.execute(delete_query, (cliente['cpf'],))
         self.connection.commit()
         print("Cliente deletado com sucesso.")
 
     def update(self, cliente):
-        print("Atualizando cliente no banco de dados: ")
+        print("Atualizando cliente no banco de dados... ")
         update_query = """
             UPDATE cliente
             SET nome = %s, cpf = %s, rg = %s, data_nascimento = %s,
@@ -75,10 +74,10 @@ class BancoDeDados:
         )
         self.cursor.execute(update_query, values)
         self.connection.commit()
-        print("Cliente atualizado com sucesso.")
+        print("Cliente atualizado com sucesso!")
 
     def insert_ordem(self, ordem):
-        print("Inserindo ordem no banco de dados: ")
+        print("Inserindo ordem no banco de dados... ")
         insert_query = """
             INSERT INTO ordem (nome, ticket, valor_compra, quantidade_compra, data_compra, cliente_id)
             VALUES (%s, %s, %s, %s, %s, %s);
@@ -132,7 +131,6 @@ class BancoDeDados:
         print("Ordem atualizada com sucesso.")
 
     def buscar_id_por_cpf(self, cpf):
-        print("Buscando ID do cliente pelo CPF no banco de dados...")
         select_query = "SELECT id FROM cliente WHERE cpf = %s;"
         self.cursor.execute(select_query, (cpf,))
         result = self.cursor.fetchone()

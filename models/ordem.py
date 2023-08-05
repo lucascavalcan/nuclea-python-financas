@@ -13,7 +13,7 @@ class Ordem:
         if cliente_id is not None:  # Certifique-se de que um ID válido foi encontrado
             ordem['cliente_id'] = cliente_id
             self.banco_de_dados.insert_ordem(ordem)
-            print("Ordem cadastrada com sucesso.")
+            print("Ordem cadastrada com sucesso!")
         else:
             print("Cliente não encontrado. Não foi possível cadastrar a ordem.")
 

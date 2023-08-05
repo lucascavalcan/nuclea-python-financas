@@ -3,7 +3,7 @@ def retorna_menu_principal():
         retorna_menu_principal = input("Deseja retornar ao menu principal? (sim/não): ")
         if retorna_menu_principal == "sim":
             return True
-        elif retorna_menu_principal == "nao":
+        elif retorna_menu_principal == "nao" or "não":
             return False
         else:
             print("Valor inválido. Digite apenas 'sim' ou 'não'.")

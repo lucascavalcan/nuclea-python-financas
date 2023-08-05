@@ -57,7 +57,6 @@ class Cliente:
 
             cliente_dict.update(novos_dados)
             self.banco_de_dados.update(cliente_dict)
-            print("Cliente atualizado com sucesso.")
         else:
             print("Cliente não encontrado.")
 
@@ -65,7 +64,6 @@ class Cliente:
         cliente = self.banco_de_dados.select({"cpf": cpf})
         if cliente:
             self.banco_de_dados.delete({"cpf": cpf})
-            print("Cliente deletado com sucesso.")
         else:
             print("Cliente não encontrado.")
 

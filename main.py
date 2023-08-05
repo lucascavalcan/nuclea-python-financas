@@ -5,7 +5,7 @@ from utils.cep import valida_cep
 from utils.data import valida_data_nascimento
 from utils.funcoes_auxiliares import formata_texto, numero_casa
 from utils.funcoes_ordem import formata_ticket, valor, quantidade, data_compra
-from utils.valida_cpf import valida_cpf
+from utils.valida_cpf import valida_cpf, valida_cpf_ordem
 from utils.valida_rg import valida_rg
 
 
@@ -33,7 +33,7 @@ def main():
 
                 opcao_cliente = input("Digite a opção desejada: ")
 
-                if opcao_cliente == "2" or len(opcao_cliente) == 14:
+                if opcao_cliente == "2":
                     cpf_consulta = valida_cpf()
                     cliente.consultar(cpf_consulta)
                 elif opcao_cliente == "1":
@@ -47,7 +47,6 @@ def main():
                     }
                     cliente.cadastrar(novo_cliente)
                 elif opcao_cliente == "3":
-                    print("Atualizando cliente...")
                     cpf_att = valida_cpf()
                     novos_dados = {
                         "nome": formata_texto(),
@@ -70,20 +69,29 @@ def main():
             ordem = Ordem()
             while True:
                 print("Menu Ordem:")
-                print("1 - Cadastrar")
+                print("1 - Cadastrar nova ordem")
+                print("2 - Voltar ao menu principal")
 
-                nova_ordem = {
-                    "nome": formata_texto(),
-                    "ticket": formata_ticket(),
-                    "valor_compra": valor(),
-                    "quantidade_compra": quantidade(),
-                    "data_compra": data_compra(),
-                    "cpf_cliente": input("Digite o CPF do cliente associado à ordem: ")
-                }
-                cliente_id = ordem.buscar_id_por_cpf(nova_ordem['cpf_cliente'])  # Buscar ID do cliente pelo CPF
-                nova_ordem['cliente_id'] = cliente_id  # Adicionar o ID do cliente à ordem
-                ordem.cadastrar(nova_ordem)
+                opcao_ordem = input("Digite a opção desejada: ")
 
+                if opcao_ordem == "1":
+                    print("Cadastrar nova ordem:")
+
+                    nova_ordem = {
+                        "nome": formata_texto(),
+                        "ticket": formata_ticket(),
+                        "valor_compra": valor(),
+                        "quantidade_compra": quantidade(),
+                        "data_compra": data_compra(),
+                        "cpf_cliente": valida_cpf_ordem()
+                    }
+                    cliente_id = ordem.buscar_id_por_cpf(nova_ordem['cpf_cliente'])
+                    nova_ordem['cliente_id'] = cliente_id
+                    ordem.cadastrar(nova_ordem)
+                elif opcao_ordem == "2":
+                    break
+                else:
+                    print("Opção inválida. Tente novamente.")
 
         elif opcao == "3":
             pass
@@ -94,6 +102,7 @@ def main():
             validador = False
         else:
             print("Opção inválida. Tente novamente.")
+
 
 if __name__ == "__main__":
     main()
