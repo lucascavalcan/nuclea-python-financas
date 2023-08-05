@@ -1,9 +1,10 @@
 from models.cliente import Cliente
 from models.ordem import Ordem
+from relatorio import obter_dados_acao, imprimir_relatorio_acao
 from repository.banco_de_dados import BancoDeDados
 from utils.cep import valida_cep
 from utils.data import valida_data_nascimento
-from utils.funcoes_auxiliares import formata_texto, numero_casa
+from utils.funcoes_auxiliares import formata_texto, numero_casa, nome_arquivo
 from utils.funcoes_ordem import formata_ticket, valor, quantidade, data_compra
 from utils.valida_cpf import valida_cpf, valida_cpf_ordem
 from utils.valida_rg import valida_rg
@@ -96,7 +97,9 @@ def main():
         elif opcao == "3":
             pass
         elif opcao == "4":
-            pass
+            cpf = valida_cpf_ordem().strip()
+            arquivo = nome_arquivo().strip()
+            imprimir_relatorio_acao(cpf, arquivo)
         elif opcao == "5":
             print("Obrigado por utilizar o sistema de gerenciamento de carteira de ações da Nuclea. Até a próxima!")
             validador = False

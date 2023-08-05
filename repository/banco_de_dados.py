@@ -93,13 +93,15 @@ class BancoDeDados:
         self.cursor.execute(insert_query, values)
         self.connection.commit()
 
-    def select_ordem(self, ticket):
-        print("Selecionando ordem no banco de dados: ")
-        select_query = "SELECT * FROM ordem WHERE ticket = %s;"
-        self.cursor.execute(select_query, (ticket,))
+    def select_ordem(self, cpf):
+        select_query = """
+            SELECT ordem.* FROM ordem
+            JOIN cliente ON ordem.cliente_id = cliente.id
+            WHERE cliente.cpf = %s;
+        """
+        self.cursor.execute(select_query, (cpf,))
         ordens = self.cursor.fetchall()
-        for ordem in ordens:
-            print(ordem)
+        print(ordens)  # Adicione esta linha para imprimir os resultados
         return ordens
 
     def delete_ordem(self, ticket):
@@ -151,7 +153,3 @@ class BancoDeDados:
 
         return parametros_conexao
 
-
-# Realizar integração com a classe cliente.
-conexao = BancoDeDados()
-cliente = {"cpf": "914.566.460-95"}

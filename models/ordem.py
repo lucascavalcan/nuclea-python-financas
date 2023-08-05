@@ -1,5 +1,5 @@
 from models.cliente import Cliente
-from repository.banco_de_dados import BancoDeDados, cliente
+from repository.banco_de_dados import BancoDeDados
 
 
 class Ordem:
