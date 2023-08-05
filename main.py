@@ -4,6 +4,7 @@ from repository.banco_de_dados import BancoDeDados
 from utils.cep import valida_cep
 from utils.data import valida_data_nascimento
 from utils.funcoes_auxiliares import formata_texto, numero_casa
+from utils.funcoes_ordem import formata_ticket, valor, quantidade, data_compra
 from utils.valida_cpf import valida_cpf
 from utils.valida_rg import valida_rg
 
@@ -70,25 +71,19 @@ def main():
             while True:
                 print("Menu Ordem:")
                 print("1 - Cadastrar")
-                print("2 - Consultar")
-                print("3 - Atualizar")
-                print("4 - Deletar")
-                print("5 - Voltar ao menu principal")
 
-                opcao_ordem = input("Digite a opção desejada: ")
+                nova_ordem = {
+                    "nome": formata_texto(),
+                    "ticket": formata_ticket(),
+                    "valor_compra": valor(),
+                    "quantidade_compra": quantidade(),
+                    "data_compra": data_compra(),
+                    "cpf_cliente": input("Digite o CPF do cliente associado à ordem: ")
+                }
+                cliente_id = ordem.buscar_id_por_cpf(nova_ordem['cpf_cliente'])  # Buscar ID do cliente pelo CPF
+                nova_ordem['cliente_id'] = cliente_id  # Adicionar o ID do cliente à ordem
+                ordem.cadastrar(nova_ordem)
 
-                if opcao_ordem == "2" or len(opcao_ordem) == 14:
-                    ordem.consultar()
-                elif opcao_ordem == "1":
-                    ordem.cadastrar()
-                elif opcao_ordem == "3":
-                    ordem.atualizar()
-                elif opcao_ordem == "4":
-                    ordem.deletar()
-                elif opcao_ordem == "5":
-                    break
-                else:
-                    print("Opção inválida. Tente novamente.")
 
         elif opcao == "3":
             pass

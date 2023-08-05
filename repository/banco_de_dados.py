@@ -131,6 +131,16 @@ class BancoDeDados:
         self.connection.commit()
         print("Ordem atualizada com sucesso.")
 
+    def buscar_id_por_cpf(self, cpf):
+        print("Buscando ID do cliente pelo CPF no banco de dados...")
+        select_query = "SELECT id FROM cliente WHERE cpf = %s;"
+        self.cursor.execute(select_query, (cpf,))
+        result = self.cursor.fetchone()
+        if result:
+            return result[0]
+        else:
+            return None
+
     @staticmethod
     def retorna_parametros_conexao_banco_de_dados():
         parametros_conexao = {

@@ -4,7 +4,9 @@ class Cliente:
 
     def __init__(self):
         self.cpf = None
+        #inicializar tambem os outros valores como None
         self.banco_de_dados = BancoDeDados()
+
 
     def cadastrar(self, cliente):
         self.banco_de_dados.insert(cliente)
@@ -66,3 +68,7 @@ class Cliente:
             print("Cliente deletado com sucesso.")
         else:
             print("Cliente não encontrado.")
+
+    def buscar_id_por_cpf(self, cpf):
+        cliente_id = self.banco_de_dados.buscar_id_por_cpf(cpf)
+        return cliente_id
