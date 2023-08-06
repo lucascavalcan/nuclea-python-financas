@@ -4,7 +4,16 @@ class Cliente:
 
     def __init__(self):
         self.cpf = None
-        #inicializar tambem os outros valores como None
+        self.nome = None
+        self.rg = None
+        self.data_nascimento = None
+        self.CEP = None
+        self.Logradouro = None
+        self.Complemento = None
+        self.Bairro = None
+        self.Cidade = None
+        self.Estado = None
+        self.numero_residencia = None
         self.banco_de_dados = BancoDeDados()
 
 
