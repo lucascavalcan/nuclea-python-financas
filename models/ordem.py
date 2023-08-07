@@ -5,6 +5,12 @@ from repository.banco_de_dados import BancoDeDados
 class Ordem:
 
     def __init__(self):
+        self.nome = None
+        self.ticket = None
+        self.valor_compra = None
+        self.quantidade_compra = None
+        self.data_compra = None
+        self.cliente_id = None
         self.banco_de_dados = BancoDeDados()
         self.cliente = Cliente()
 
@@ -49,7 +55,7 @@ class Ordem:
 
     def buscar_id_por_cpf(self, cpf):
         cliente_id = self.cliente.buscar_id_por_cpf(cpf)
-        if cliente_id is not None:  # Certifique-se de que um ID válido foi encontrado
+        if cliente_id is not None:  # Certifica-se de que um ID válido foi encontrado
             return cliente_id
         else:
             print("Cliente não encontrado.")

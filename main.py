@@ -1,8 +1,7 @@
 from carteira import realizar_analise_carteira
 from models.cliente import Cliente
 from models.ordem import Ordem
-from relatorio import obter_dados_acao, imprimir_relatorio_acao
-from repository.banco_de_dados import BancoDeDados
+from relatorio import imprimir_relatorio_acao
 from utils.cep import valida_cep
 from utils.data import valida_data_nascimento
 from utils.funcoes_auxiliares import formata_texto, numero_casa, nome_arquivo

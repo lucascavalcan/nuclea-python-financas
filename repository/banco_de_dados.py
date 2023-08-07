@@ -101,7 +101,7 @@ class BancoDeDados:
         """
         self.cursor.execute(select_query, (cpf,))
         ordens = self.cursor.fetchall()
-        print(ordens)  # Adicione esta linha para imprimir os resultados
+        print(ordens)
         return ordens
 
     def delete_ordem(self, ticket):
